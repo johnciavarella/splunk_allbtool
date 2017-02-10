@@ -26,7 +26,7 @@ else
                 btoolFunction
         done
 
-        tar -cf btool-$date.tar *.btool
+        tar -cf btool-$hostName-$date.tar *.btool
         rm -rf *.btool
 
 fi 
