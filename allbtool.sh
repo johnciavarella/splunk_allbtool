@@ -17,11 +17,17 @@ echo -e "$hostName\n$date2\n" >> $CONF.btool
 $SPLUNK_HOME/bin/./splunk btool $CONF list --debug >> $CONF.btool
 }
 
-for CONF in "${modules[@]}"
-do
-        echo "$CONF Running"
-        btoolFunction
-done
+if [ -z "$SPLUNK_HOME" ]; then
+        echo -e "ERROR: SPLUNK_HOME not set\nPlease set the \$SPLUNK_HOME variable"
+else
+        for CONF in "${modules[@]}"
+        do
+                echo "$CONF Running"
+                btoolFunction
+        done
 
-tar -cf btool-$date.tar *.btool
-rm -rf *.btool
+        tar -cf btool-$date.tar *.btool
+        rm -rf *.btool
+
+fi 
+
